@@ -184,10 +184,10 @@ open class PagingMenuController: UIViewController {
         }
         let completionClosure = { [weak self] (_: Bool) -> Void in
             pagingViewController.relayoutPagingViewControllers()
-
+            
             // show paging views
             self?.showPagingMenuControllers()
-
+            
             self?.onMove?(.didMoveController(to: nextPagingViewController, from: previousPagingViewController))
         }
         if duration > 0 {
@@ -242,7 +242,7 @@ open class PagingMenuController: UIViewController {
         menuView.setNeedsLayout()
         menuView.layoutIfNeeded()
     }
-
+    
     fileprivate func constructPagingViewController() {
         let viewControllers: [UIViewController]
         switch options.componentType {
@@ -253,7 +253,7 @@ open class PagingMenuController: UIViewController {
         
         pagingViewController = PagingViewController(viewControllers: viewControllers, options: options)
     }
-
+    
     fileprivate func layoutPagingViewController() {
         guard let pagingViewController = pagingViewController else { return }
         
@@ -325,7 +325,7 @@ extension PagingMenuController: UIScrollViewDelegate {
         
         move(toPage: nextPage)
     }
-
+    
     public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         onMove?(.didScrollStart)
     }
@@ -478,7 +478,7 @@ extension PagingMenuController {
         menuView?.addGestureRecognizer(rightSwipeGestureRecognizer)
     }
     
-    internal func handleTapGesture(_ recognizer: UITapGestureRecognizer) {
+    @objc internal func handleTapGesture(_ recognizer: UITapGestureRecognizer) {
         guard let menuItemView = recognizer.view as? MenuItemView,
             let menuView = menuView,
             let page = menuView.menuItemViews.index(of: menuItemView),
@@ -503,7 +503,7 @@ extension PagingMenuController {
         move(toPage: newPage)
     }
     
-    internal func handleSwipeGesture(_ recognizer: UISwipeGestureRecognizer) {
+    @objc internal func handleSwipeGesture(_ recognizer: UISwipeGestureRecognizer) {
         guard let menuView = recognizer.view as? MenuView,
             let menuOptions = menuOptions else { return }
         
@@ -591,3 +591,4 @@ extension PagingMenuController {
         NSException(name: NSExceptionName(rawValue: exceptionName), reason: reason, userInfo: nil).raise()
     }
 }
+
