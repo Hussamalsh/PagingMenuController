@@ -56,7 +56,7 @@ open class MenuItemView: UIView {
         let imageView = UIImageView(image: image)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
-    }()
+        }()
     
     fileprivate var menuOptions: MenuViewCustomizable!
     fileprivate var menuItemOptions: MenuItemViewCustomizable!
@@ -208,7 +208,7 @@ open class MenuItemView: UIView {
             titleLabel.heightAnchor.constraint(equalToConstant: titleLabelSize.height),
             ])
     }
-
+    
     fileprivate func layoutLabel() {
         // H:|[titleLabel](==labelSize.width)|
         // V:|[titleLabel]|
@@ -303,7 +303,7 @@ extension MenuItemView {
     
     fileprivate func estimatedLabelSize(_ label: UILabel) -> CGSize {
         guard let text = label.text else { return .zero }
-        return NSString(string: text).boundingRect(with: CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude), options: .usesLineFragmentOrigin, attributes: [NSFontAttributeName: label.font], context: nil).size
+        return NSString(string: text).boundingRect(with: CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude), options: .usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font: label.font], context: nil).size
     }
     
     fileprivate func calculateLabelSize(_ label: UILabel, maxWidth: CGFloat) -> CGSize {
